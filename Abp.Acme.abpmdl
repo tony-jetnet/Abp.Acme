@@ -1,0 +1,101 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.0.3",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "Abp.Acme.Application": {
+      "path": "src/Abp.Acme.Application/Abp.Acme.Application.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.Application.Tests": {
+      "path": "test/Abp.Acme.Application.Tests/Abp.Acme.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Acme.Domain.Shared": {
+      "path": "src/Abp.Acme.Domain.Shared/Abp.Acme.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.Application.Contracts": {
+      "path": "src/Abp.Acme.Application.Contracts/Abp.Acme.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.HttpApi": {
+      "path": "src/Abp.Acme.HttpApi/Abp.Acme.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.HttpApi.Client": {
+      "path": "src/Abp.Acme.HttpApi.Client/Abp.Acme.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.EntityFrameworkCore.Tests": {
+      "path": "test/Abp.Acme.EntityFrameworkCore.Tests/Abp.Acme.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Acme.EntityFrameworkCore": {
+      "path": "src/Abp.Acme.EntityFrameworkCore/Abp.Acme.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.TestBase": {
+      "path": "test/Abp.Acme.TestBase/Abp.Acme.TestBase.abppkg",
+      "folder": "test"
+    },
+    "Abp.Acme.Domain.Tests": {
+      "path": "test/Abp.Acme.Domain.Tests/Abp.Acme.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Acme.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Abp.Acme.HttpApi.Client.ConsoleTestApp/Abp.Acme.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "Abp.Acme.DbMigrator": {
+      "path": "src/Abp.Acme.DbMigrator/Abp.Acme.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.HttpApi.Host": {
+      "path": "src/Abp.Acme.HttpApi.Host/Abp.Acme.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "Abp.Acme.Domain": {
+      "path": "src/Abp.Acme.Domain/Abp.Acme.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

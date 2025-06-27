@@ -1,0 +1,13 @@
+﻿{
+  "applications": {
+    "Abp.Acme.HttpApi.Host": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44349",
+      "path": "../../../src/Abp.Acme.HttpApi.Host/Abp.Acme.HttpApi.Host.csproj",
+      "kubernetesService": ".*-httpapihost$",
+      "execution": {
+        "order": 4
+      }
+    }
+  }
+}
