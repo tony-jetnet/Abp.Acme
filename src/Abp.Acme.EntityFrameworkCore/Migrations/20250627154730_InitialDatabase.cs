@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Abp.Acme.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -449,26 +449,56 @@ namespace Abp.Acme.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FaaDocIndexes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    TypeCollateral = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Collateral = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Party = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    DocId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    DrDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    ProcessingDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    CorrDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    CorrId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    SerialId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    DocType = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    ExtraProperties = table.Column<string>(type: "text", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FaaDocIndexes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OpenIddictApplications",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     ApplicationType = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     ClientId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    ClientSecret = table.Column<string>(type: "text", nullable: true),
+                    ClientSecret = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ClientType = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     ConsentType = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    DisplayName = table.Column<string>(type: "text", nullable: true),
-                    DisplayNames = table.Column<string>(type: "text", nullable: true),
-                    JsonWebKeySet = table.Column<string>(type: "text", nullable: true),
-                    Permissions = table.Column<string>(type: "text", nullable: true),
-                    PostLogoutRedirectUris = table.Column<string>(type: "text", nullable: true),
-                    Properties = table.Column<string>(type: "text", nullable: true),
-                    RedirectUris = table.Column<string>(type: "text", nullable: true),
-                    Requirements = table.Column<string>(type: "text", nullable: true),
-                    Settings = table.Column<string>(type: "text", nullable: true),
-                    ClientUri = table.Column<string>(type: "text", nullable: true),
-                    LogoUri = table.Column<string>(type: "text", nullable: true),
+                    DisplayName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    DisplayNames = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    JsonWebKeySet = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Permissions = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    PostLogoutRedirectUris = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Properties = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    RedirectUris = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Requirements = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Settings = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    ClientUri = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    LogoUri = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: false),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -489,13 +519,13 @@ namespace Abp.Acme.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: true),
-                    Descriptions = table.Column<string>(type: "text", nullable: true),
-                    DisplayName = table.Column<string>(type: "text", nullable: true),
-                    DisplayNames = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
+                    Descriptions = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
+                    DisplayName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    DisplayNames = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    Properties = table.Column<string>(type: "text", nullable: true),
-                    Resources = table.Column<string>(type: "text", nullable: true),
+                    Properties = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Resources = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: false),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
                     CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -773,8 +803,8 @@ namespace Abp.Acme.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     ApplicationId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Properties = table.Column<string>(type: "text", nullable: true),
-                    Scopes = table.Column<string>(type: "text", nullable: true),
+                    Properties = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Scopes = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     Status = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Subject = table.Column<string>(type: "character varying(400)", maxLength: 400, nullable: true),
                     Type = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
@@ -823,8 +853,8 @@ namespace Abp.Acme.Migrations
                     AuthorizationId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     ExpirationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Payload = table.Column<string>(type: "text", nullable: true),
-                    Properties = table.Column<string>(type: "text", nullable: true),
+                    Payload = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    Properties = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     RedemptionDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     ReferenceId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     Status = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
@@ -1078,6 +1108,11 @@ namespace Abp.Acme.Migrations
                 column: "UserName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FaaDocIndexes_TypeCollateral_Collateral",
+                table: "FaaDocIndexes",
+                columns: new[] { "TypeCollateral", "Collateral" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictApplications_ClientId",
                 table: "OpenIddictApplications",
                 column: "ClientId");
@@ -1188,6 +1223,9 @@ namespace Abp.Acme.Migrations
 
             migrationBuilder.DropTable(
                 name: "AppBooks");
+
+            migrationBuilder.DropTable(
+                name: "FaaDocIndexes");
 
             migrationBuilder.DropTable(
                 name: "OpenIddictScopes");

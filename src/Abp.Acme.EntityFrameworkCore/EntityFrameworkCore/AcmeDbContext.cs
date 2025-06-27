@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Abp.Acme.Books;
@@ -29,6 +30,7 @@ public class AcmeDbContext :
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 
     public DbSet<Book> Books { get; set; }
+    public DbSet<FaaDocIndexEntity> FaaDocIndexes { get; set; }
 
     #region Entities from the modules
 
@@ -62,7 +64,6 @@ public class AcmeDbContext :
     public AcmeDbContext(DbContextOptions<AcmeDbContext> options)
         : base(options)
     {
-
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -80,7 +81,7 @@ public class AcmeDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
-        
+
         builder.Entity<Book>(b =>
         {
             b.ToTable(AcmeConsts.DbTablePrefix + "Books",
@@ -88,7 +89,14 @@ public class AcmeDbContext :
             b.ConfigureByConvention(); //auto configure for the base class props
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
         });
-        
+
+        builder.Entity<FaaDocIndexEntity>(x =>
+        {
+            x.ToTable("FaaDocIndexes", AcmeConsts.DbSchema);
+            x.HasIndex(y => new { y.TypeCollateral, y.Collateral });
+            x.ConfigureByConvention();
+        });
+
         /* Configure your own tables/entities inside here */
 
         //builder.Entity<YourEntity>(b =>
@@ -97,5 +105,28 @@ public class AcmeDbContext :
         //    b.ConfigureByConvention(); //auto configure for the base class props
         //    //...
         //});
+
+        ConfigureDefaultEntitiesWithSettings(builder);
+    }
+
+    private void ConfigureDefaultEntitiesWithSettings(ModelBuilder builder)
+    {
+        foreach (var entityType in builder.Model.GetEntityTypes()
+                     .Where(x => !x.GetTableName()!.StartsWith("Abp")))
+        {
+            foreach (var property in entityType.GetProperties()
+                         .Where(x => x.ClrType == typeof(string)))
+            {
+                if (property.GetMaxLength() == null && !property.Name.EndsWith("Json"))
+                {
+                    property.SetMaxLength(
+                        property.Name.Contains("Description")
+                        || property.Name.Contains("Comment")
+                        || property.Name.Contains("Note")
+                            ? 1000
+                            : 100);
+                }
+            }
+        }
     }
 }
